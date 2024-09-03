@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { SECRET_KEY } from "../constant/secret-key";
+import { IStockSearchResponse } from "./interface/stock-search-data.interface";
 
 export const useStockSearchData = (searchKey:string) => {
   const URL = ` ${"https://www.alphavantage.co/query?function="}${"SYMBOL_SEARCH"}&keywords=${searchKey}&apikey=${SECRET_KEY}`;
@@ -14,9 +15,8 @@ export const useStockSearchData = (searchKey:string) => {
         throw new Error(data.Information);
       }
 
-      return data.bestMatches;
+      return data.bestMatches as IStockSearchResponse["bestMatches"];
     },
     enabled:searchKey?.trim().length > 0,
-    staleTime: 5 * 60 * 1000,
   });
 };

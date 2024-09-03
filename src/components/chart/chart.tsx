@@ -4,7 +4,7 @@ export default function StockChart({
   FilteredStockData,
   ChartType,
 }: {
-  FilteredStockData?: any;
+  FilteredStockData?: (string | number)[][];
   ChartType: GoogleChartWrapperChartType;
 }) {
   const options = {

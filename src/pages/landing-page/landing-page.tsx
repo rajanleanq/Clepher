@@ -4,19 +4,15 @@ import { useTopGainerLoser } from "../../services/useTopGainerLoser";
 import GainerLoserDataTable from "./component/gainer-losers-data-table";
 import LandingPageTabs from "./component/landing-page-tabs";
 import useSearchParams from "../../hooks/useSearchParams";
+import { ITopGainerLoserData } from "../../services/interface/top-gainer-loser.interface";
 
 export default function LandingPage() {
-  const {searchParams} = useSearchParams();
-  const [tab_name, setTabName] = useState<string>(searchParams?.get('tabs') ?? "top_gainers");
+  const { searchParams } = useSearchParams();
+  const [tab_name, setTabName] = useState<string>(
+    searchParams?.get("tabs") ?? "top_gainers"
+  );
   const { data: GainerLoserData, isError, isLoading } = useTopGainerLoser();
-  if (isError) {
-    return (
-      <div className="mx-auto">
-        Some Error has occured. Please try after sometime.
-      </div>
-    );
-  }
-  const handleTabChange = (payload:string) => {
+  const handleTabChange = (payload: string) => {
     setTabName(payload);
   };
   return (
@@ -24,10 +20,19 @@ export default function LandingPage() {
       <div className="xs:p-4 md:p-6 bg-white rounded-[8px] flex flex-col h-full">
         <LandingPageTabs handleTabChange={handleTabChange} />
         <div className="w-full xs:overflow-x-auto lg:overflow-hidden">
-          <GainerLoserDataTable
-            data={GainerLoserData?.[tab_name]}
-            isLoading={isLoading}
-          />
+          {!isError && (
+            <GainerLoserDataTable
+              data={
+                GainerLoserData?.[
+                  tab_name as keyof typeof GainerLoserData
+                ] as ITopGainerLoserData["data"]
+              }
+              isLoading={isLoading}
+            />
+          )}
+          {isError && (
+            <p className="text-red-400 p-4 text-center">No data found</p>
+          )}
           {isLoading && <Skeleton />}
         </div>
       </div>

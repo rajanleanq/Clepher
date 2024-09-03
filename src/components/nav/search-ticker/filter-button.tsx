@@ -1,7 +1,11 @@
 import { Button } from "../../button/button";
 import { cn } from "../../../lib/utils";
 
-export default function FilterButton({ filter, isActive, onClick }: any) {
+export default function FilterButton({ filter, isActive, onClick }: {
+  filter: string;
+  isActive: boolean;
+  onClick: () => void;
+}) {
   return (
     <Button
       className={cn(

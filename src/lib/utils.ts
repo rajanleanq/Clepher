@@ -1,14 +1,19 @@
 import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { IStockChartResponse } from "../services/interface/stock-chart.interface";
+import { IPeriod } from "../constant/period";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-export const ChartDataFormat = (chartData: any, objectKey: any) => {
+export const ChartDataFormat = (
+  chartData: IStockChartResponse,
+  objectKey: string
+) => {
   // Extract the "Weekly Adjusted Time Series" data
   const googleChartData = [];
-  if (chartData && chartData[objectKey]) {
-    const weeklyData = chartData["Weekly Adjusted Time Series"];
+  if (chartData && chartData?.[objectKey as keyof IStockChartResponse]) {
+    const weeklyData = chartData?.["Weekly Adjusted Time Series"];
 
     // Create an array to store the converted data
     googleChartData.push(["Date", "Open", "High", "Low", "Close"]);
@@ -33,7 +38,10 @@ export const ChartDataFormat = (chartData: any, objectKey: any) => {
   return googleChartData;
 };
 
-export const ChartFilter = (filter: any, initialData: any) => {
+export const ChartFilter = (
+  filter: IPeriod["period"],
+  initialData: (string | number)[][]
+) => {
   const today = new Date();
   let newData = [...initialData];
 

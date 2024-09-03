@@ -33,7 +33,7 @@ export default function SearchTickerModal({
     );
   };
 
-  const filteredData = searchData?.filter((item: any) => {
+  const filteredData = searchData?.filter((item) => {
     if (selectFilter === "all") {
       return (
         item["2. name"]
@@ -84,7 +84,7 @@ export default function SearchTickerModal({
                 key={filter}
                 filter={filter}
                 isActive={selectFilter === filter}
-                onClick={() => setSelectFilter(filter as any)}
+                onClick={() => setSelectFilter(filter as  "all" | "stock" | "crypto" | "etf" | "Mutual Fund")}
               />
             ))}
           </div>
@@ -92,7 +92,7 @@ export default function SearchTickerModal({
         <hr />
         <div className="flex gap-2 flex-col">
           {searchValue?.toString()?.trim().length > 0 && (
-            <span className="text-sm font-medium">Company Search: </span>
+            <span className="text-sm font-medium">Best match: </span>
           )}
           {!isFetching && handleNoResultFound() && (
             <span className="text-sm font-medium text-red-500">
@@ -102,7 +102,7 @@ export default function SearchTickerModal({
           <div className="flex flex-col gap-2 max-h-[400px] overflow-y-auto">
             {isFetching && <Skeleton />}
             {!isFetching &&
-              filteredData?.map((item: any) => (
+              filteredData?.map((item) => (
                 <SearchResult
                   key={item["1. symbol"] + item["2. name"]}
                   item={item}

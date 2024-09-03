@@ -1,8 +1,13 @@
-import { ChevronDown } from "lucide-react";
-import { cn } from "../../../lib/utils";
 import { useNavigate } from "react-router";
+import { ITopGainerLoserData, ITopGainerLoserResponse } from "../../../services/interface/top-gainer-loser.interface";
 
-export default function GainerLoserDataTable({ data, isLoading }: any) {
+export default function GainerLoserDataTable({
+  data,
+  isLoading,
+}: {
+  data: ITopGainerLoserData['data'],
+  isLoading: boolean;
+}) {
   const router = useNavigate();
   return (
     <table className="w-full border border-s rounded-[10px] overflow-hidden shadow-sm mt-4">
@@ -26,9 +31,11 @@ export default function GainerLoserDataTable({ data, isLoading }: any) {
       <tbody>
         {!isLoading && (
           <>
-            {data?.map((p: any) => (
+            {data?.map((p: ITopGainerLoserData["data"][0]) => (
               <tr
-                onClick={() => router(`/company/${p?.ticker}?price=${p?.price}`)}
+                onClick={() =>
+                  router(`/company/${p?.ticker}?price=${p?.price}`)
+                }
                 className="border-b border-solid border-gray-200 cursor-pointer"
                 key={p?.ticker}
               >
@@ -47,15 +54,6 @@ export default function GainerLoserDataTable({ data, isLoading }: any) {
                   }
                 >
                   {p?.change_percentage}
-
-                  <ChevronDown
-                    className={cn(
-                      "w-4",
-                      p?.change_percentage > 0
-                        ? "rotate-180 text-green-500"
-                        : "text-red-500"
-                    )}
-                  />
                 </td>
                 <td className="py-4 px-2 font-nunito xs:text-[12px] md:text-14 text-end">
                   {p?.volume}

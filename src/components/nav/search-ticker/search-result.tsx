@@ -1,6 +1,7 @@
 import CompanySvg from "../../../assets/svg/company.svg";
+import { BestMatch } from "../../../services/interface/stock-search-data.interface";
 
-export default function SearchResult({ item }: any) {
+export default function SearchResult({ item }: { item: BestMatch }) {
   return (
     <div className="flex items-center gap-3 border-b py-2">
       <img src={CompanySvg} alt="company" className="w-4" />

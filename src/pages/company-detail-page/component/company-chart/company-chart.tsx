@@ -7,6 +7,7 @@ import { ChartDataFormat, ChartFilter, cn } from "../../../../lib/utils";
 import { Suspense, lazy, useMemo, useState } from "react";
 import { useStockChartData } from "../../../../services/useStockChartData";
 import Skeleton from "../../../../components/skeleton/skeleton";
+import { IStockChartResponse } from "../../../../services/interface/stock-chart.interface";
 const StockChart = lazy(() => import("../../../../components/chart/chart"));
 
 export default function CompanyChart() {
@@ -19,7 +20,7 @@ export default function CompanyChart() {
     isLoading,
   } = useStockChartData(params?.id as string);
   const seriesData = ChartDataFormat(
-    StockChartRawData,
+    StockChartRawData as IStockChartResponse,
     "Weekly Adjusted Time Series"
   );
   const FilteredStockData = useMemo(
