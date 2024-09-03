@@ -16,6 +16,7 @@ export const useStockSearchData = (searchKey:string) => {
 
       return data.bestMatches;
     },
+    enabled:searchKey?.trim().length > 0,
     staleTime: 5 * 60 * 1000,
   });
 };
