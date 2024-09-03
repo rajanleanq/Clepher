@@ -29,7 +29,7 @@ export default function SearchTickerModal({
     return (
       searchValue.trim().length > 0 &&
       !isFetching &&
-      (!searchData || searchData.length === 0)
+      (searchData?.length === 0)
     );
   };
 
@@ -91,7 +91,7 @@ export default function SearchTickerModal({
         </div>
         <hr />
         <div className="flex gap-2 flex-col">
-          {!isFetching && searchValue?.toString()?.trim().length > 0 && (
+          {searchValue?.toString()?.trim().length > 0 && (
             <span className="text-sm font-medium">Company Search: </span>
           )}
           {!isFetching && handleNoResultFound() && (

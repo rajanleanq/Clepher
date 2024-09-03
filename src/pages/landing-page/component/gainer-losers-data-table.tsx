@@ -1,7 +1,7 @@
 import { ChevronDown } from "lucide-react";
 import { cn } from "../../../lib/utils";
 
-export default function GainreLoserDataTable({ data, isLoading }: any) {
+export default function GainerLoserDataTable({ data, isLoading }: any) {
   return (
     <table className="w-full border border-s rounded-[10px] overflow-hidden shadow-sm mt-4">
       <thead className="border-b border-solid border-gray-200 bg-orange-50">
