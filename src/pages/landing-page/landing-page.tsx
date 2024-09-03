@@ -18,10 +18,10 @@ export default function LandingPage() {
     setTabName(payload);
   };
   return (
-    <div className="px-8 py-5 flex flex-col gap-4  w-full h-max min-h-screen">
-      <div className="p-6 bg-white rounded-[8px] flex flex-col h-full">
+    <div className="xs:px-4 md:px-8 xs:py-3 md:py-5 flex flex-col gap-4  w-full h-max min-h-screen">
+      <div className="xs:p-4 md:p-6 bg-white rounded-[8px] flex flex-col h-full">
         <LandingPageTabs handleTabChange={handleTabChange} />
-        <div className="w-full">
+        <div className="w-full xs:overflow-x-auto lg:overflow-hidden">
           <GainerLoserDataTable
             data={GainerLoserData?.[tab_name]}
             isLoading={isLoading}

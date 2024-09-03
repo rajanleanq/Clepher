@@ -5,19 +5,19 @@ export default function GainreLoserDataTable({ data, isLoading }: any) {
   return (
     <table className="w-full border border-s rounded-[10px] overflow-hidden shadow-sm mt-4">
       <thead className="border-b border-solid border-gray-200 bg-orange-50">
-        <th className="py-3 font-nunito font-medium text-gray-600 text-14 px-2">
+        <th className="py-3 font-nunito font-medium text-gray-600 xs:text-[12px] md:text-14 px-2">
           Ticker
         </th>
-        <th className="py-3 font-nunito font-medium text-gray-600 text-14 px-2 text-end">
+        <th className="py-3 font-nunito font-medium text-gray-600 xs:text-[12px] md:text-14 px-2 text-end">
           Price
         </th>
-        <th className="py-3 font-nunito font-medium text-gray-600 text-14 px-2 text-end">
+        <th className="py-3 font-nunito font-medium text-gray-600 xs:text-[12px] md:text-14 px-2 text-end">
           Change Amount
         </th>
-        <th className="py-3 font-nunito font-medium text-gray-600 text-14 px-2 text-end">
+        <th className="py-3 font-nunito font-medium text-gray-600 xs:text-[12px] md:text-14 px-2 text-end">
           Change Percentage
         </th>
-        <th className="py-3 font-nunito font-medium text-gray-600 text-14 px-2 text-end">
+        <th className="py-3 font-nunito font-medium text-gray-600 xs:text-[12px] md:text-14 px-2 text-end">
           Volume
         </th>
       </thead>
@@ -29,18 +29,18 @@ export default function GainreLoserDataTable({ data, isLoading }: any) {
                 className="border-b border-solid border-gray-200"
                 key={p?.ticker}
               >
-                <td className="py-4 px-2 font-nunito text-14 text-center">
+                <td className="py-4 px-2 font-nunito xs:text-[12px] md:text-14 text-center">
                   {p?.ticker}
                 </td>
-                <td className="py-4 px-2 font-nunito text-14 text-end">
+                <td className="py-4 px-2 font-nunito xs:text-[12px] md:text-14 text-end">
                   {p?.price}
                 </td>
-                <td className="py-4 px-2 font-nunito text-14 text-end">
+                <td className="py-4 px-2 font-nunito xs:text-[12px] md:text-14 text-end">
                   {p?.change_amount}
                 </td>
                 <td
                   className={(
-                    "py-4 px-2 font-nunito text-14 text-end flex gap-2 justify-end"
+                    "py-4 px-2 font-nunito xs:text-[12px] md:text-14 text-end flex gap-2 justify-end"
                   )}
                 >
                   {p?.change_percentage}
@@ -54,7 +54,7 @@ export default function GainreLoserDataTable({ data, isLoading }: any) {
                     )}
                   />
                 </td>
-                <td className="py-4 px-2 font-nunito text-14 text-end">
+                <td className="py-4 px-2 font-nunito xs:text-[12px] md:text-14 text-end">
                   {p?.volume}
                 </td>
               </tr>

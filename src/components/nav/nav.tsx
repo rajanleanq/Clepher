@@ -19,13 +19,13 @@ function Header() {
                   <span>Interview</span>
                 </div>
               </a>
-              <div className="w-[300px] cursor-pointer" onClick={() => setSearchModal(true)}>
+              <div className="xs:w-[150px] md:w-[300px] cursor-pointer" onClick={() => setSearchModal(true)}>
                 <InputContainer
                   leadingIcon={
                     <img src={SearchIcon} alt="icon" className="w-4 mr-2" />
                   }
                 >
-                  <p className="text-gray-400 text-13">Search Company</p>
+                  <p className="text-gray-400 xs:text-[12px] md:text-13">Search Company</p>
                 </InputContainer>
               </div>
             </div>

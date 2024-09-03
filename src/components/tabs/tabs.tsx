@@ -15,7 +15,7 @@ export default function TabComponent({
 }) {
   return (
     <>
-      <div className="flex items-center gap-10 border-b-1 border-solid border-gray-100 xs:hidden md:flex">
+      <div className="flex items-center gap-10 border-b-1 border-solid border-gray-100 md:flex">
         {tabs?.map((p) => (
           <div
             key={p?.value}
@@ -25,7 +25,7 @@ export default function TabComponent({
               p?.value === tab_index && "border-borders-focus"
             )}
           >
-            <p className="text-14 leading-14 text-gray-600 font-400 font-nunito hover:scale-105 transition-all animate-in duration-200">
+            <p className="xs:text-[12px] md:text-14 md:leading-14 text-gray-600 font-400 font-nunito hover:scale-105 transition-all animate-in duration-200">
               {p?.label}
             </p>
           </div>
