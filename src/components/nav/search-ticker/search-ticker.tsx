@@ -57,7 +57,7 @@ export default function SearchTickerModal({
     }
   });
   return (
-    <Modal>
+    <Modal onClose={onClose}>
       <div className="p-3 flex flex-col gap-3">
         <InputContainer
           leadingIcon={<img src={SearchIcon} alt="icon" className="w-4 mr-2" />}

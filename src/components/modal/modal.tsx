@@ -1,21 +1,22 @@
-export default function Modal({ children }: { children: React.ReactNode }) {
+import React from 'react';
+
+export default function Modal({ children, onClose }: { children: React.ReactNode; onClose?: () => void }) {
   return (
     <div
-      className="relative z-10"
+      className="fixed inset-0 z-10 flex items-center justify-center"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
     >
       <div
-        className="fixed z-10 inset-0 bg-black-primary  bg-opacity-50 transition-opacity"
+        className="fixed inset-0 bg-black-primary bg-opacity-50 transition-opacity cursor-pointer"
         aria-hidden="true"
+        onClick={onClose}
       ></div>
 
-      <div className="fixed inset-0 z-30 overflow-y-auto">
-        <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
-          <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-            <div className="bg-white p-2 ">{children}</div>
-          </div>
+      <div className="relative z-20 w-full max-w-lg p-4 bg-white rounded-lg shadow-xl">
+        <div className="bg-white">
+          {children}
         </div>
       </div>
     </div>
