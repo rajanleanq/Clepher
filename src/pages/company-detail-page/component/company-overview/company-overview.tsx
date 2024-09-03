@@ -1,112 +1,135 @@
+import { useParams } from "react-router";
 import Card from "../../../../components/card/card";
+import { useCompanyInfo } from "../../../../services/useCompanyInfo";
+import useSearchParams from "../../../../hooks/useSearchParams";
+import Skeleton from "../../../../components/skeleton/skeleton";
 export default function CompanyOverview() {
+  const { searchParams } = useSearchParams();
+  const params = useParams();
+  const {
+    data: companyInfo,
+    isError,
+    isLoading,
+  } = useCompanyInfo(params?.id as string);
   const badges = [
     {
-      label: "symbol",
-      value: "",
+      label: "Symbol",
     },
     {
-      label: "exchange",
-      value: "",
+      label: "Exchange",
     },
 
     {
-      label: "currency",
-      value: "",
+      label: "Currency",
     },
     {
-      label: "sector",
-      value: "",
+      label: "Sector",
     },
     {
-      label: "industry",
-      value: "",
+      label: "Industry",
     },
   ];
   const market_cards = [
     {
       label: "50 Day Moving Average",
-      value: "",
+      value: companyInfo?.["50DayMovingAverage"],
     },
     {
       label: "200 Day Moving Average",
-      value: "",
-    },
-    {
-      label: "50 Day Moving Average",
-      value: "",
+      value: companyInfo?.["200DayMovingAverage"],
     },
     {
       label: "Market Cap",
-      value: "",
+      value: companyInfo?.MarketCapitalization,
     },
     {
       label: "EBITDA",
-      value: "",
+      value: companyInfo?.EBITDA,
     },
     {
       label: "PEG Ratio",
-      value: "",
+      value: companyInfo?.PEGRatio,
     },
     {
       label: "P/E Ratio",
-      value: "",
+      value: companyInfo?.PERatio,
     },
     {
       label: "Beta",
-      value: "",
+      value: companyInfo?.Beta,
     },
     {
       label: "Profit Margin",
-      value: "",
+      value: companyInfo?.ProfitMargin,
     },
     {
       label: "Dividend Yield",
-      value: "",
+      value: companyInfo?.DividendYield,
     },
     {
       label: "EPS",
-      value: "",
+      value: companyInfo?.EPS,
     },
     {
       label: "Analyst Target Price",
-      value: "",
+      value: companyInfo?.AnalystTargetPrice,
     },
     {
       label: "52 Week High",
-      value: "",
+      value: companyInfo?.["52WeekHigh"],
     },
     {
       label: "52 Week Low",
-      value: "",
+      value: companyInfo?.["52WeekLow"],
     },
   ];
   return (
-    <Card className="min-h-max p-0">
-      <div className="flex  justify-between border-b px-4 py-3">
-        <p className="text-16 font-nunito font-400">Company Name</p>
-        <p className="text-16 font-nunito font-400">$0.14</p>
-      </div>
-      <div className="flex flex-wrap gap-6 py-2 px-3">
-        {badges.map((p) => (
-          <Badge key={p.label} label={p.label} value={p.value} />
-        ))}
-      </div>
-      <hr />
-      <section className="py-2 px-3 flex flex-col gap-6">
-        <div>
-        <p className="text-14 font-nunito font-400 text-gray-500">
-          About Company:
-        </p>
-        <p className="text-14 font-nunito font-400">Description</p>
-        </div>
-        <div className="flex flex-wrap gap-3">
-          {market_cards.map((p) => (
-            <MarketCard key={p.label} label={p.label} value={p.value} />
-          ))}
-        </div>
-      </section>
-    </Card>
+    <>
+      {!isLoading && (
+        <Card className="min-h-max p-0">
+          <div className="flex xs:flex-col xs:gap-2 md:flex-row md:gap-0 justify-between border-b px-4 py-3">
+            <p className="text-16 font-nunito font-400">
+              {companyInfo?.Name || 'Company'} Overview
+            </p>
+            <p className="text-16 font-nunito font-400">
+              ${searchParams?.get("price")}
+            </p>
+          </div>
+          {!isError && (
+            <>
+              <div className="flex flex-wrap gap-6 py-2 px-3">
+                {badges.map((p) => (
+                  <Badge
+                    key={p.label}
+                    label={p.label}
+                    value={companyInfo?.[p.label as keyof typeof companyInfo] || ''}
+                  />
+                ))}
+              </div>
+              <hr />
+              <section className="py-2 px-3 flex flex-col gap-6">
+                <div>
+                  <p className="text-14 font-nunito font-400 text-gray-500">
+                    About Company:
+                  </p>
+                  <p className="text-14 font-nunito font-400">
+                    {companyInfo?.Description}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  {market_cards.map((p) => (
+                    <MarketCard key={p.label} label={p.label} value={p.value || ''} />
+                  ))}
+                </div>
+              </section>
+            </>
+          )}
+          {isError && <p className="text-red-400 p-4 text-center">No data found</p>}
+        </Card>
+      )}
+
+      {isLoading && <Skeleton />}
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
-// import { useRouter } from "@tanstack/react-router";
+import { useNavigate } from "react-router";
 
 export default function useSearchParams() {
-    // const router = useRouter(); // Initialize the router instance
+    const router = useNavigate(); // Initialize the router instance
     const searchParams = new URLSearchParams(window.location.search); // Parse the current URL's search parameters
     const urlSearchParams = new URLSearchParams(
         Array.from(searchParams.entries()), // Create a new URLSearchParams instance from the existing search parameters
@@ -23,9 +23,7 @@ export default function useSearchParams() {
         const query = search ? `?${search}` : ''; // Prefix with '?' if there are search parameters
 
         // Use the router to navigate to the new URL with updated query parameters
-        // router.navigate({
-        //     to: '' + query,
-        // });
+        router(query);
     }
 
     // Return the current search parameters and the function to update them

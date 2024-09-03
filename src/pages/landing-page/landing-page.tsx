@@ -3,9 +3,11 @@ import Skeleton from "../../components/skeleton/skeleton";
 import { useTopGainerLoser } from "../../services/useTopGainerLoser";
 import GainerLoserDataTable from "./component/gainer-losers-data-table";
 import LandingPageTabs from "./component/landing-page-tabs";
+import useSearchParams from "../../hooks/useSearchParams";
 
 export default function LandingPage() {
-  const [tab_name, setTabName] = useState<string>("top_gainers");
+  const {searchParams} = useSearchParams();
+  const [tab_name, setTabName] = useState<string>(searchParams?.get('tabs') ?? "top_gainers");
   const { data: GainerLoserData, isError, isLoading } = useTopGainerLoser();
   if (isError) {
     return (

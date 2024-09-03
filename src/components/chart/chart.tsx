@@ -33,7 +33,7 @@ export default function StockChart({
   };
 
   return (
-    <div className="sm:h-[450px] h-[300px]">
+    <div className="sm:h-[450px] h-[350px]">
       <Chart
         chartType={ChartType}
         height="100%"

@@ -38,18 +38,7 @@ export const ChartFilter = (filter: any, initialData: any) => {
   let newData = [...initialData];
 
   switch (filter) {
-    case "24hr":
-      // Filter data for the last 24 hours
-      const twentyFourHoursAgo = new Date(today);
-      twentyFourHoursAgo.setDate(today.getDate() - 1);
-
-      newData = newData.filter((item) => {
-        const itemDate = new Date(item[0]);
-        return itemDate >= twentyFourHoursAgo && itemDate <= today;
-      });
-      break;
-
-    case "7days":
+    case "7d":
       // Filter data for the last 7 days
       const sevenDaysAgo = new Date(today);
       sevenDaysAgo.setDate(today.getDate() - 7);
@@ -60,7 +49,7 @@ export const ChartFilter = (filter: any, initialData: any) => {
       });
       break;
 
-    case "1month":
+    case "1m":
       // Filter data for the last 1 month
       const oneMonthAgo = new Date(today);
       oneMonthAgo.setMonth(today.getMonth() - 1);
@@ -71,7 +60,7 @@ export const ChartFilter = (filter: any, initialData: any) => {
       });
       break;
 
-    case "1year":
+    case "1y":
       // Filter data for the last 1 year
       const oneYearAgo = new Date(today);
       oneYearAgo.setFullYear(today.getFullYear() - 1);
@@ -82,7 +71,7 @@ export const ChartFilter = (filter: any, initialData: any) => {
       });
       break;
 
-    case "10years":
+    case "10y":
       // Filter data for the last 10 years
       const tenYearsAgo = new Date(today);
       tenYearsAgo.setFullYear(today.getFullYear() - 10);
@@ -93,7 +82,7 @@ export const ChartFilter = (filter: any, initialData: any) => {
       });
       break;
 
-    case "20years":
+    case "20y":
       // Filter data for the last 20 years
       const twentyYearsAgo = new Date(today);
       twentyYearsAgo.setFullYear(today.getFullYear() - 20);

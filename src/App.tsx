@@ -1,13 +1,11 @@
 import "./App.css";
 import Layout from "./components/layout/layout";
-import CompanyDetailPage from "./pages/company-detail-page/company-detail-page";
-import LandingPage from "./pages/landing-page/landing-page";
+import AppRouters from "./routes/app.routers";
 
 function App() {
   return (
     <Layout>
-      {/* <LandingPage /> */}
-      <CompanyDetailPage/>
+      <AppRouters />
     </Layout>
   );
 }

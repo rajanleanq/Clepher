@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { SECRET_KEY } from "../constant/secret-key";
+import { IStockChartResponse } from "./interface/stock-chart.interface";
 
 export const useStockChartData = (symbol:string) => {
   const URL = ` ${"https://www.alphavantage.co/query?function="}${"TIME_SERIES_WEEKLY_ADJUSTED"}&symbol=${symbol}&apikey=${SECRET_KEY}`;
@@ -13,9 +14,9 @@ export const useStockChartData = (symbol:string) => {
       } else if (data?.Information) {
         throw new Error(data?.Information);
       }
-
-      return data;
+      return data as IStockChartResponse;
     },
-    staleTime: 5 * 60 * 1000, //5 Minutes
+    enabled: symbol?.trim().length > 0,
+    staleTime:0
   });
 };

@@ -1,7 +1,9 @@
 import { ChevronDown } from "lucide-react";
 import { cn } from "../../../lib/utils";
+import { useNavigate } from "react-router";
 
 export default function GainerLoserDataTable({ data, isLoading }: any) {
+  const router = useNavigate();
   return (
     <table className="w-full border border-s rounded-[10px] overflow-hidden shadow-sm mt-4">
       <thead className="border-b border-solid border-gray-200 bg-orange-50">
@@ -26,7 +28,8 @@ export default function GainerLoserDataTable({ data, isLoading }: any) {
           <>
             {data?.map((p: any) => (
               <tr
-                className="border-b border-solid border-gray-200"
+                onClick={() => router(`/company/${p?.ticker}?price=${p?.price}`)}
+                className="border-b border-solid border-gray-200 cursor-pointer"
                 key={p?.ticker}
               >
                 <td className="py-4 px-2 font-nunito xs:text-[12px] md:text-14 text-center">
@@ -39,9 +42,9 @@ export default function GainerLoserDataTable({ data, isLoading }: any) {
                   {p?.change_amount}
                 </td>
                 <td
-                  className={(
+                  className={
                     "py-4 px-2 font-nunito xs:text-[12px] md:text-14 text-end flex gap-2 justify-end"
-                  )}
+                  }
                 >
                   {p?.change_percentage}
 
