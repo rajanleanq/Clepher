@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { ITopGainerLoserData, ITopGainerLoserResponse } from "../../../services/interface/top-gainer-loser.interface";
+import { ITopGainerLoserData } from "../../../services/interface/top-gainer-loser.interface";
 
 export default function GainerLoserDataTable({
   data,
